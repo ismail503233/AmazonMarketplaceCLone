@@ -1,4 +1,4 @@
-package dtos;
+package com.amazon.marketplace.Amazon.Marketplace.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +20,4 @@ public class UserDto {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
 }
-public class UserDto {
-}
+

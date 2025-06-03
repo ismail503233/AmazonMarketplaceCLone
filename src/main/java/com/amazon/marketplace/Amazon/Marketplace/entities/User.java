@@ -1,4 +1,4 @@
-package com.amazon.marketplace.ata.AmazonMarketplace.entities;
+package com.amazon.marketplace.Amazon.Marketplace.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
