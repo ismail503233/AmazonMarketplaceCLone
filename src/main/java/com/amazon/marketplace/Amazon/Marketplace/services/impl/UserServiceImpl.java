@@ -36,19 +36,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUsersById(int id) {
-        return null;
+        User user = userRepository.findById(id).
+                orElseThrow( () -> new RuntimeException("User with this ID doesnt exist") );
+
+        return userMapper.mapToUserDto(user);
     }
 
 
     @Override
-    public UserDto updateUserById(int id) {
-        return null;
+    public UserDto updateUserById(UserDto userDto, int id) {
+
+        User user = userRepository.findById(id).
+                orElseThrow( () -> new RuntimeException("User with this ID doesnt exist") );
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword());
+//        user.setUpdatedAt(userDto.getUpdatedAt());
+        User savedUser = userRepository.save(user);
+        return userMapper.mapToUserDto(savedUser);
     }
 
     @Override
     public String deleteUsersById(int id) {
-        return "";
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        return "Deleted user with id" + id;
     }
-
-
+        return "no such user with id" + id;
+    }
 }

@@ -36,6 +36,8 @@ public class UserMapper {
         userDto.setPassword(user.getPassword());
         userDto.setRole(user.getRole());
         userDto.setProfilePictureUrl(user.getProfilePictureUrl());
+        userDto.setCreatedAt(user.getCreatedAt());
+        userDto.setCreatedAt(user.getUpdatedAt());
         return userDto;
     }
 }

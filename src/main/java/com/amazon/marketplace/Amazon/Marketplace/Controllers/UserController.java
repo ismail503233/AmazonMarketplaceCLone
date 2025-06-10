@@ -5,10 +5,7 @@ import com.amazon.marketplace.Amazon.Marketplace.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,9 +22,24 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
 
     }
-
+    @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers90(){
         List<UserDto> usersDtos = userService.getAllUsers();
         return ResponseEntity.ok(usersDtos);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUserById(int id) {
+        UserDto userDto = userService.getUsersById(id);
+        return ResponseEntity.ok(userDto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUserById(@PathVariable int id, @RequestBody UserDto userDto ){
+        UserDto updatedUserDto = userService.updateUserById(userDto, id);
+        return ResponseEntity.ok(updatedUserDto);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUsersById(@PathVariable int id) {
+        return ResponseEntity.ok(userService.deleteUsersById(id));
     }
 }

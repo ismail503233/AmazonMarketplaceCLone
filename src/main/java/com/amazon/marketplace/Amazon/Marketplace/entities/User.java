@@ -41,4 +41,13 @@ public class User {
     private LocalDateTime createdAt;
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
+
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void onUpdate(){
+        this.updatedAt = LocalDateTime.now();
+    }
 }
