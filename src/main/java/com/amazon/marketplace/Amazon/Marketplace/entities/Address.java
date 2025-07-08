@@ -1,10 +1,7 @@
 package com.amazon.marketplace.Amazon.Marketplace.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +18,17 @@ import java.time.LocalDateTime;
 public class Address {
     @Id
     private int id;
-    @Column(name="user_id")
-    private int userId;
-    @Column(name= "street", nullable = false)
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
+    private User user;
+
+//    @Column(name="user_id")
+//    private int userId;
+
+
+    @Column(name="street", nullable = false)
     private String street;
     @Column(name="city", nullable = false, length = 100)
     private String city;
@@ -37,5 +42,16 @@ public class Address {
     private LocalDateTime createdAt;
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 
 }

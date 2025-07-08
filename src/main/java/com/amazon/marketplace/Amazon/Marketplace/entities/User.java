@@ -1,5 +1,6 @@
 package com.amazon.marketplace.Amazon.Marketplace.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,12 +43,18 @@ public class User {
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private Address address;
+
+    @PrePersist
     public void onCreate() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void onUpdate(){
+    @PreUpdate
+    public void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
 }

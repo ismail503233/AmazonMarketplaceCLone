@@ -29,7 +29,7 @@ public class UserController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(int id) {
-        UserDto userDto = userService.getUsersById(id);
+        UserDto userDto = userService.getUserById(id);
         return ResponseEntity.ok(userDto);
     }
 
@@ -40,6 +40,6 @@ public class UserController {
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUsersById(@PathVariable int id) {
-        return ResponseEntity.ok(userService.deleteUsersById(id));
+        return ResponseEntity.ok(userService.deleteUserById(id));
     }
 }
