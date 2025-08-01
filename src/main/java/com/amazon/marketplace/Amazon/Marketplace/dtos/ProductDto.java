@@ -4,19 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressDto {
+public class ProductDto {
     private int id;
-    private int userId;
-    private String street;
-    private String city;
-    private String state;
-    private String postalCode;
-    private String country;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private int quantityAvailable;
+    private int sellerId;
+    private String category;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
 }
